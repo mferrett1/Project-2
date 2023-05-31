@@ -1,0 +1,55 @@
+/* 
+ * File:   main.cpp
+ * Author: Malachi Ferrett
+ * Created on April 8, 2023 1:51 PM
+ * Purpose:  Calculate Infinite Sequence for PI
+ */
+
+//System Libraries
+#include <iostream> //Input Output Library
+#include <cmath>    //Math Library
+#include <cstdlib>  //Random function
+#include <ctime>    //Setthe random number seed
+using namespace std;
+
+//User Libraries
+
+//Global Constants not Variables
+//Science, Math, Conversions, Dimensions
+const float PI=4*atan(1);
+const unsigned int MAXRND=(1<<31)-1;
+
+//Function Prototypes
+
+//Execution begins here at main
+int main(int argc, char** argv) {
+    //Initialize the random number seed
+    srand(static_cast<unsigned int>(time(0)));
+    
+    //Declare Variables
+    int totDart,inCircle;
+    
+    //Initialize Variables
+    totDart=100000;
+    inCircle;
+    
+    //Map/Process the Inputs -> Outputs
+    for(int dart=1;dart<=totDart;dart++){
+        float x=1.0f*rand()/MAXRND;
+        float y=1.0f*rand()/MAXRND;
+        if(x*x+y*y<=1)inCircle++;
+        
+    }
+
+    //Display Inputs/Outputs
+    cout<<"This is how a dart game can approximate PI"<<endl;
+    cout<<"Darts in the circle   = "<<inCircle<<endl;
+    cout<<"Total number of Darts = "<<totDart<<endl;
+    cout<<"The approx value of PI = "<<4.0f*inCircle/totDart<<endl;
+    cout<<"The exact value of PI  = "<<PI<<endl;
+   
+    //Clean up memory and files
+    
+    //Exit the Program
+    return 0;
+}
