@@ -1,0 +1,205 @@
+/* 
+ * File:   main.cpp
+ * Author: Malachi Ferrett
+ * Created on April 14, 2023 12:54 PM
+ * Purpose:  Pull 5 Cards
+ */
+
+//System Libraries
+#include <iostream>  //I/O Library
+#include <cstdlib>   //Random Function Library
+#include <ctime>     //Time Library
+#include <iomanip>   //Formatting Library
+#include <fstream>   //File Library
+using namespace std;
+
+//User Libraries
+
+//Global Constants - No Global Variables
+//Only Universal Constants, Math, Physics, Conversions, Higher Dimensions
+const char NCARDS=52;
+//Function Prototypes
+
+//Execution Begins Here
+int main(int argc, char** argv) {
+    //Set Random Number seed
+    srand(static_cast<unsigned int>(time(0)));
+    
+    //Declare Variable Data Types and Constants
+    unsigned int nC1,nC2,nC3,nC4,nC5; //Card number 1-52
+    unsigned int vC1,vC2,vC3,vC4,vC5; //Card value 1-13
+    int cardnum, 
+        cardval;
+    unsigned char face,suit; //Suit S-Spades, H-Harts, D-Diamonds, C-Clubs
+    char response;
+    fstream inFile;
+    
+    //Initialize file parameters
+    inFile.open("out.dat",ios::in);
+    
+    //Initialize Variables
+    nC1=rand()%NCARDS+1;
+    //Unique Number for first 2 cards
+    do{
+        nC2=rand()%NCARDS+1;
+    }while(nC1==nC2);
+    //Order the first 2 cards
+    if(nC1>nC2){
+        unsigned short temp=nC1;
+        nC1=nC2;
+        nC2=temp;
+    }
+    //Unique Number for Card 3
+    do{
+        nC3=rand()%NCARDS+1;
+    }while(nC1==nC3||nC2==nC3);
+    //Order the first 3 cards
+    if(nC2>nC3){
+        unsigned short temp=nC2;
+        nC2=nC3;
+        nC3=temp;
+    }
+    if(nC1>nC2){
+        unsigned short temp=nC1;
+        nC1=nC2;
+        nC2=temp;
+    }
+    //Unique NumberS for Card 4
+    do{
+        nC4=rand()%NCARDS+1;
+    }while(nC1==nC4||nC2==nC4||vC3==nC4);
+    //Order the first 4 cards
+    if(nC3>nC4){
+        unsigned short temp=nC3;
+        nC3=nC4;
+        nC4=temp;
+    }
+    if(nC2>nC3){
+        unsigned short temp=nC2;
+        nC2=nC3;
+        nC3=temp;
+    }
+    if(nC1>nC2){
+        unsigned short temp=nC1;
+        nC1=nC2;
+        nC2=temp;
+    }
+    //Unique Number for Card 5
+    do{
+        nC5=rand()%NCARDS+1;
+    }while(nC1==nC5||nC2==nC5||nC3==nC5||nC4==nC5);
+    //Order the first 5
+    if(nC4>nC5){
+        unsigned short temp=nC4;
+        nC4=nC5;
+        nC5=temp;
+    }
+    if(nC3>nC4){
+        unsigned short temp=nC3;
+        nC3=nC4;
+        nC4=temp;
+    }
+    if(nC2>nC3){
+        unsigned short temp=nC2;
+        nC2=nC3;
+        nC3=temp;
+    }
+    if(nC1>nC2){
+        unsigned short temp=nC1;
+        nC1=nC2;
+        nC2=temp;
+    }
+
+    int cardIn;
+    cout << "First Cards: ";
+    inFile>>cardIn;
+    do{
+    }while(cardIn==cardval + cardnum + face + suit);
+    if(cardnum==nC1)vC1==cardval;
+        cout<<"Card Value = "<<setw(3)<<vC1<<" Face/Suit "<<face<<suit<<endl;
+    if(cardnum==nC2)vC2==cardval;{
+        cout<<"Card Value = "<<setw(3)<<vC2<<" Face/Suit "<<face<<suit<<endl;
+        cout << "Total Value = " << vC1 + vC2 << endl << endl;
+    }
+    do{  
+    if ( vC1 + vC2> 21)     
+    cout << "Bust!";
+    }
+    do{
+    if(vC1+vC2 == 21) 
+    cout << "Congratulations!";
+    }
+    do{
+    cout << "Do you want another card? (y/n): ";  
+    cin >> response;
+    }
+    do{
+    if(cardnum==nC3)vC3==cardval;
+    cout<<"Card Value = "<<setw(3)<<vC3<<" Face/Suit "<<face<<suit<<endl;
+    cout << endl;
+    cout << "Total Value = " << vC1 + vC2 + vC3 << endl << endl;                                     
+    }
+    do{     
+    if ( vC1 + vC2 + vC3> 21)     
+    cout << "Bust!";
+    }
+    do{
+    if (vC1+vC2+vC3 == 21) 
+    cout << "Congratulations!";
+    do{
+    cout << "Do you want another card? (y/n): ";  
+    cin >> response;
+    }
+    do{
+    if(cardnum==nC4)vC4==cardval;
+    cout<<"Card Value = "<<setw(3)<<vC4<<" Face/Suit "<<face<<suit<<endl;
+    cout << "Total Value: " << vC1 + vC2 + vC3 + vC4 << endl << endl;
+    cout << endl;
+    }
+    do{
+    if ( vC1 + vC2 + vC3 + vC4> 21)    
+    cout << "Bust!";
+    }
+    do{
+    if (vC1+vC2+vC3+vC4 == 21) 
+    cout << "Congratulations!";
+    }
+    cout << "Do you want another card? (y/n): ";  
+    cin >> response;
+    do{
+    if(cardnum==nC4)vC4==cardval;
+    cout<<"Card Value = "<<setw(3)<<vC4<<" Face/Suit "<<face<<suit<<endl;
+    cout << "Total Value: " << vC1 + vC2 + vC3 + vC4 << endl << endl;
+    cout << endl;
+    }
+    do{
+    if ( vC1 + vC2 + vC3 + vC4> 21)     
+    cout << "Bust!";
+    }
+    do{
+    if (vC1+vC2+vC3+vC4 == 21) 
+    cout << "Congratulations!";
+    }
+    cout << "Do you want another card? (y/n): ";  
+    cin >> response;
+    do{
+    if(cardnum==nC5)vC5==cardval;
+    cout<<"Card Value = "<<setw(3)<<vC5<<" Face/Suit "<<face<<suit<<endl;
+    cout << "Total Value: " << vC1 + vC2 + vC3 + vC4 + vC5<< endl << endl;
+    cout << endl;
+    }
+    do{ 
+    if ( vC1 + vC2 + vC3 + vC4 + vC5> 21)     
+    cout << "Bust!";
+    else if(vC1+vC2+vC3+vC4+vC5 == 21)
+    cout << "Congratulations!";
+    cout<<"That's the end of the game"<<endl;
+    }
+  }
+    //Exit stage right!
+    
+    inFile.close();
+    
+    return 0;
+    
+}
